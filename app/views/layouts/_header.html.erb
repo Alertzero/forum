@@ -1,0 +1,31 @@
+<nav class="navbar bg-info">
+  <div class="container">
+    <ul class="nav mx-auto bg-info">
+        <%= link_to "Alert Channel" , root_path, class: 'text-white shadow-none', style: "font-size: xx-large; outline: none !important;" %>
+    </ul>
+  </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-white bg-white">
+  <div class="container">
+    <%= link_to "สนทนาโดยไม่ต้องสมัครสมาชิก ภาษาญี่ปุ่น อนิเมะ สัพเพเหระ", root_path, class: 'navbar-brand'%>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+      <% if account_signed_in?%>
+   <li class="nav-item">
+          <%= link_to "ออกจากระบบ", destroy_account_session_path, class: "btn  btn-xs mr-1", method: :delete%>
+        </li>
+      <% else%>
+        <li class="nav-item">
+          <%= link_to "สมัครสมาชิก", new_account_registration_path, class: "btn  btn-xs mr-1"%>
+        </li>
+        <li class="nav-item">
+          <%= link_to "เข้าสู่ระบบ", new_account_session_path, class: "btn  btn-xs mr"%>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

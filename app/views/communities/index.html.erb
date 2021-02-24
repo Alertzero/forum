@@ -1,0 +1,19 @@
+<% if account_signed_in? %>
+  <div class="float-right">
+    <%= link_to "สร้างห้องใหม่", new_community_path, class: "btn btn-outline-primary ml-3"%>
+  </div>
+<% end %>
+<% if @communities.size > 0 %>
+  <% @communities.each do |community|%>
+    <div class="card">
+    <div class="card-header">
+      <%= link_to community.name, community_path(community) %>
+      </div>
+      <div class="card-body">
+      <%= community.rules %>
+       </div>
+    </div>
+  <% end %>
+<% else%>
+  <p>No community to display</p>
+<% end %>

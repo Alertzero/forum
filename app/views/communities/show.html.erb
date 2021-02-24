@@ -1,0 +1,24 @@
+
+
+<div class="card">
+  <div class="card-header">
+    <%= @community.name %>
+  </div>
+  <div class="card-body">
+    <%= simple_format @community.rules %>
+  </div>
+</div>
+
+<%= link_to "ตั้งกระทู้ใหม่", new_community_post_path(@community), class: "btn btn-primary mt-5 mb-5" %>
+
+
+<% @posts.each do |post|%>
+<div class="card">
+  <div class="card-header">
+    <%= link_to post.title, community_post_path(@community, post) %>
+  </div>
+  <div class="card-body">
+    <%= truncate post.body, length: 200 %>
+  </div>
+</div>
+<% end %>

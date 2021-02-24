@@ -1,0 +1,38 @@
+<div class="row mb-4">
+  <div class="col-sm-3">1</div>
+  <div class="col-sm-3">2</div>
+  <div class="col-sm-3">3</div>
+  <div class="col-sm-3">4</div>
+</div>
+<div class="row">
+  <div class="col-7 mt-2 mr-auto bg-white">
+    <div class="row">
+      <div class="col-6 bg-danger p-2">
+        Famous
+      </div>
+      <div class="col-6 bg-warning p-2">
+        New
+      </div>
+      <% @posts.each do |post|%>
+<div class="card w-100">
+  <div class="card-header">
+    <%= link_to post.title, community_post_path(post.community_id, post) %>
+  </div>
+  <div class="card-body">
+    <%= truncate post.body, length: 200 %>
+  </div>
+</div>
+<% end %>
+    </div>
+  </div>
+  <div class="col-4 mt-2 bg-white">
+    <button class="btn btn-primary">
+      ตั้งกระทู้
+    </button>
+    <ul class="list-group mt-2">
+      <% @communities.each do |community|%>
+        <li class="list-group-item"><%= link_to community.name, community_path(community)%></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
