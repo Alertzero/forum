@@ -7,22 +7,24 @@
 <div class="row">
   <div class="col-7 mt-2 mr-auto bg-white">
     <div class="row">
-      <div class="col-6 bg-danger p-2">
-        Famous
+      <div class="col-6">
+        <div class="bg-danger p-3 m-3">Famous</div>
       </div>
-      <div class="col-6 bg-warning p-2">
-        New
+      <div class="col-6">
+        <div class="bg-warning p-3 m-3">New</div>
       </div>
+      <div class="p-3 w-100">
       <% @posts.each do |post|%>
-<div class="card w-100">
-  <div class="card-header">
-    <%= link_to post.title, community_post_path(post.community_id, post) %>
-  </div>
-  <div class="card-body">
-    <%= truncate post.body, length: 200 %>
-  </div>
-</div>
-<% end %>
+        <div class="card ">
+          <div class="card-header">
+            <%= link_to post.title, community_post_path(post.community_id, post) %>
+          </div>
+          <div class="card-body">
+            <%= truncate post.body, length: 200 %>
+          </div>
+        </div>
+      <% end %>
+      </div>
     </div>
   </div>
   <div class="col-4 mt-2 bg-white">
