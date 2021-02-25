@@ -1,7 +1,7 @@
 <nav class="navbar bg-info">
   <div class="container">
     <ul class="nav mx-auto bg-info">
-        <%= link_to "Alert Channel" , root_path, class: 'text-white shadow-none', style: "font-size: xx-large; outline: none !important;" %>
+      <%= link_to "Alert Channel" , root_path, class: 'text-white shadow-none', style: "font-size: xx-large; outline: none !important;" %>
     </ul>
   </div>
 </nav>
@@ -13,17 +13,30 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-      <% if account_signed_in?%>
-   <li class="nav-item">
-          <%= link_to "ออกจากระบบ", destroy_account_session_path, class: "btn  btn-xs mr-1", method: :delete%>
-        </li>
-      <% else%>
-        <li class="nav-item">
-          <%= link_to "สมัครสมาชิก", new_account_registration_path, class: "btn  btn-xs mr-1"%>
-        </li>
-        <li class="nav-item">
-          <%= link_to "เข้าสู่ระบบ", new_account_session_path, class: "btn  btn-xs mr"%>
-        </li>
+        <% if account_signed_in?%>
+          <div class="dropdown">
+            <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= current_account.username%>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+              <%= link_to profile_path(current_account.username), class: "dropdown-item" do %>
+              <%= fa_icon 'user'%> ข้อมูลส่วนบุคคล
+              <% end %>
+              <%= link_to edit_account_registration_path, class: "dropdown-item" do%>
+              <%= fa_icon 'edit'%> ตั้งค่า
+              <% end %>
+              <%= link_to destroy_account_session_path, class: "dropdown-item", method: :delete do%>
+              <%= fa_icon 'sign-out'%> ออกจากระบบ
+              <% end %>
+            </div>
+          </div>
+        <% else%>
+          <li class="nav-item">
+            <%= link_to "สมัครสมาชิก", new_account_registration_path, class: "btn  btn-xs mr-1"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "เข้าสู่ระบบ", new_account_session_path, class: "btn  btn-xs"%>
+          </li>
         <% end %>
       </ul>
     </div>

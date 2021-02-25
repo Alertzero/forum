@@ -1,0 +1,11 @@
+  <% posts.each do |post|%>
+        <div class="card mb-3">
+          <div class="card-header">
+            <%= link_to post.title, community_post_path(post.community_id, post), class: "text-xl mb-1" %>
+            <small class="font-weight-bold ml-auto"> ตั้งโดย <%= link_to post.account.username, profile_path(post.account.username)%> เมื่อ <%= post.created_at %> ห้อง <%= link_to post.community.name, community_path(post.community), class: "ml-auto" %> </small>  
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= truncate post.body, length: 200 %></p>
+          </div>
+        </div>
+      <% end %>

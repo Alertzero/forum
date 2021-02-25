@@ -1,0 +1,5 @@
+<%= form_with model: @subscription do |form|%>
+<%= form.hidden_field :community_id, value: community_id%>
+<%= form.submit "เข้าร่วมเป็นสมาชิกห้อง", class: "btn btn-info" %>
+
+<% end%>

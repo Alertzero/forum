@@ -7,13 +7,19 @@
   <div class="card-body">
     <%= simple_format @community.rules %>
   </div>
+  <div class="card-footer">
+  จำนวนสมาชิกในห้องมีทั้งหมด <%= @subscribers_count %> คน
+  </div>
 </div>
 
-<%= link_to "ตั้งกระทู้ใหม่", new_community_post_path(@community), class: "btn btn-primary mt-5 mb-5" %>
+<div class="btn-group mt-3 mb-3">
+<%= link_to "ตั้งกระทู้ใหม่", new_community_post_path(@community), class: "btn btn-info" %>
+<%= render "communities/subscribe", community_id: @community.id %>
+</div>
 
 
 <% @posts.each do |post|%>
-<div class="card">
+<div class="card mb-3">
   <div class="card-header">
     <%= link_to post.title, community_post_path(@community, post) %>
   </div>
