@@ -15,7 +15,7 @@ class CommunitiesController < ApplicationController
                          end
     @is_subscribed = if account_signed_in?
                        Subscription.where(community_id: @community.id,
-                                          account_id: current_or_guest_account.id).any?
+                                          account_id: current_account.id).any?
                      else
                        false
                      end
@@ -28,7 +28,7 @@ class CommunitiesController < ApplicationController
 
   def create
     @community = Community.new(community_values)
-    @community.account_id = current_or_guest_account.id
+    @community.account_id = current_account.id
     if @community.save
       redirect_to communities_path
     else
