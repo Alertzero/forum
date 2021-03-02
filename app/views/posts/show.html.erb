@@ -1,26 +1,45 @@
-<div class="card mb-3">
-  <div class="card-header bg-warning font-weight-bold">
-    <%= @post.title %>
-  </div>
-  <div class="card-body">
-    <%= @post.body %>
-  </div>
- </div>
-<div id="post-comments" class="mb-3"> 
- <%= render "posts/comments", comments: @post.comments%>
-</div>
-
-  <%= form_for @comment, remote: true do |form|%>
-    <%= form.hidden_field :post_id, value: @post.id%>
+ 
+<div class="row">
+  <div class="col-11">
     <div class="card mb-3">
-      <div class="card-header">
-        <%= form.label :message, "ความคิดเห็น" %>
+      <div class="card-header bg-warning font-weight-bold">
+        <%= @post.title %>
       </div>
       <div class="card-body">
-        <%= form.text_area :message, class: "form-control"%>
-      </div>
-      <div class="card-footer">
-        <%= form.submit "ตอบ", class: "btn btn-primary" %>
+        <%= @post.body %>
       </div>
     </div>
-  <% end %>
+  </div>
+  <div class="col-1 text-center">
+
+<div class="card mb-3">
+      <div class="card-header bg-white font-weight-bold">
+
+    <div id="vote-actions-<%= @post.id%>" class="vote" data-id="<%= @post.id%>" >
+      <div class="fa fa-arrow-up upvote"> </div>
+      <div class="font-weight-bold score"><%= @post.score%></div>
+      <div class="fa fa-arrow-down downvote"> </div>
+    </div>
+
+ </div>
+    </div>
+
+  </div>
+</div>
+<div id="post-comments" class="mb-3">
+  <%= render "posts/comments", comments: @post.comments%>
+</div>
+<%= form_for @comment, remote: true do |form|%>
+  <%= form.hidden_field :post_id, value: @post.id%>
+  <div class="card mb-3">
+    <div class="card-header">
+      <%= form.label :message, "ความคิดเห็น" %>
+    </div>
+    <div class="card-body">
+      <%= form.text_area :message, class: "form-control"%>
+    </div>
+    <div class="card-footer">
+      <%= form.submit "ตอบ", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

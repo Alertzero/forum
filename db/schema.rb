@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_122751) do
+ActiveRecord::Schema.define(version: 2021_03_02_110404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_02_25_122751) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "guest", default: false
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
@@ -75,8 +76,29 @@ ActiveRecord::Schema.define(version: 2021_02_25_122751) do
     t.index ["community_id"], name: "index_subscriptions_on_community_id"
   end
 
+  create_table "tokumeiusers", force: :cascade do |t|
+    t.string "display_name"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_tokumeiusers_on_account_id"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "post_id", null: false
+    t.boolean "upvote"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_votes_on_account_id"
+    t.index ["post_id"], name: "index_votes_on_post_id"
+  end
+
   add_foreign_key "comments", "accounts"
   add_foreign_key "comments", "posts"
   add_foreign_key "subscriptions", "accounts"
   add_foreign_key "subscriptions", "communities"
+  add_foreign_key "tokumeiusers", "accounts"
+  add_foreign_key "votes", "accounts"
+  add_foreign_key "votes", "posts"
 end

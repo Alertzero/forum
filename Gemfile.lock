@@ -85,6 +85,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-guests (0.7.0)
+      devise
     erubi (1.10.0)
     ffi (1.14.2)
     font-awesome-rails (4.7.0.6)
@@ -227,6 +229,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
+  devise-guests (~> 0.7.0)
   font-awesome-rails (~> 4.7, >= 4.7.0.2)
   jbuilder (~> 2.7)
   jquery-rails (~> 4.4)

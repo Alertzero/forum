@@ -1,0 +1,10 @@
+.upvote,.downvote {
+    &.active {
+        color: #ff0000;
+    }
+    
+    &:hover {
+        color: #ff0000;
+        cursor: pointer;
+    }
+}

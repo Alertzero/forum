@@ -1,7 +1,11 @@
 <% comments.each do |comment|%>
 <div class="card mb-3">
   <div class="card-header">
+    <% if comment.account.username%>
     <%= link_to comment.account.username, profile_path(comment.account.username) %>
+    <% else %>
+    <%=comment.account.email%>
+    <% end %>
   </div>
   <div class="card-body">
     <%= comment.message %>

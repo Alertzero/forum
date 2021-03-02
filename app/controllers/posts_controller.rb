@@ -2,8 +2,6 @@ class PostsController < ApplicationController
 
   before_action :authenticate_account!, except: [:index, :show]
 
-
-
   def index
     @posts = Post.all
   end
@@ -20,7 +18,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_values)
-    @post.account_id = current_account.id
+    @post.account_id = current_or_guest_account.id
     @post.community_id = params[:community_id]
     if @post.save
       redirect_to community_path(@post.community_id)
